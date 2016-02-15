@@ -8,6 +8,9 @@ const app = express();
 //set port to environment port or 3000
 const PORT =process.env.PORT || 3000;
 
+//use jade templating engine
+app.set("view engine", "jade");
+
 //load all routes
 app.use(routes);
 
