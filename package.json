@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --harmony_destructuring server.js"
+    "dev": "nodemon --harmony_destructuring server.js",
+    "bower": "bower"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/bbleds/mean-stock#readme",
   "dependencies": {
+    "bower": "^1.7.7",
     "express": "^4.13.4",
     "jade": "^1.11.0"
   }

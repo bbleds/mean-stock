@@ -1,0 +1,24 @@
+{
+  "name": "mean-stock",
+  "description": "A stock tracking app built with the MEAN stack",
+  "main": "index.js",
+  "authors": [
+    "Benjamin Bledsoe <bledsoedesigns@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/bbleds/mean-stock",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/www/lib"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
