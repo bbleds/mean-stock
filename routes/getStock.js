@@ -5,7 +5,7 @@ const router = express.Router();
 const getStockCtrl = require("../ctrlrs/getStockCtrl")
 
 //save data via mongodb
-router.post("/getStock", getStockCtrl.getStock);
+router.post("/api/getStock", getStockCtrl.getStock);
 
 
 module.exports = router;

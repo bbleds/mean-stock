@@ -6,8 +6,9 @@ const mongoose = require("mongoose");
 const stockItemSchema = mongoose.model("stockItem", mongoose.Schema({
 	company: String,
 	quantity: Number,
-	purchasePrice: Number,
-	symbol: String
+	purchaseStockPrice: Number,
+	symbol: String,
+	totalPrice: Number
 }))
 
 
