@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/quotes", (req, res) =>
 {
-	res.send("Lets buy some GUUUUDDDDZZZZ")
+	res.render("quotes")
 })
 
 module.exports = router;
