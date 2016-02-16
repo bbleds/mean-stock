@@ -7,8 +7,7 @@ const stockItemSchema = mongoose.model("stockItem", mongoose.Schema({
 	company: String,
 	quantity: Number,
 	purchaseStockPrice: Number,
-	symbol: String,
-	totalPrice: Number
+	symbol: String
 }))
 
 

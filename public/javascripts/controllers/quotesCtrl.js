@@ -16,10 +16,10 @@ app.controller("quotesCtrl", ["$http", function($http)
 	}
 
 	//saves/buys stock to mongodb
-	self.getStock = () =>
+	self.getStock = (company, quantity, purchasePrice, symbol) =>
 	{
 		//get quote from api
-		$http.post(`/api/getStock`)
+		$http.post(`/api/getStock/${company}/${quantity}/${purchasePrice}/${symbol}`)
 		.then((data)=>
 		{
 			self.getStockSuccess = data;

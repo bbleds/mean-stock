@@ -8,17 +8,20 @@ const exportsObject = {};
 
 exportsObject.getStock = (req, res) =>
 {
-// res.send in here
-// res.send({"test":"butt"})
+	console.log("req.body below");
+
+	const company = req.params.company;
+	const quantity = req.params.quantity;
+	const purchaseStockPrice = req.params.purchaseStockPrice;
+	const symbol = req.params.symbol;
 
 	// new instance of stock object
 	const stockToBuy = new stockItem(
 	{
-		company:"Apple",
-		quantity: 3,
-		purchaseStockPrice: 95,
-		symbol: "aapl",
-		totalPrice: 285
+		"company": company,
+		"quantity": quantity,
+		"purchaseStockPrice": purchaseStockPrice,
+		"symbol": symbol
 	})
 
 	// save stock to db and send res
