@@ -14,6 +14,10 @@ app.config(($stateProvider, $urlRouterProvider, $locationProvider) => {
 			url: '/quotes',
 			templateUrl: 'www/html-partials/quotes.html'
 		})
+		.state('portfolio', {
+			url: '/portfolio',
+			templateUrl: 'www/html-partials/portfolio.html'
+		})
 	//if we load in erroneous route, go  back to base/catch-all route
 	$urlRouterProvider.otherwise('/');
 
