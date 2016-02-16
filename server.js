@@ -16,7 +16,11 @@ app.set("view engine", "jade");
 app.use(express.static(path.join(__dirname, '/public')))
 
 //load all routes
-app.use(routes);
+// app.use(routes);
+app.get("/", (req,res)=>
+{
+	res.render("index")
+})
 
 
 //Start app on specified port

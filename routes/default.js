@@ -10,12 +10,12 @@ router.get("/", (req, res) =>
 })
 
 
-router.get("/example", (req, res) =>
-{
-	let response = test.getNetflix(req, res)
+// router.get("/example", (req, res) =>
+// {
+// 	let response = test.getNetflix(req, res)
 
-	//right now this will not work because this is async, so handle with front end code
-	res.send(response)
-})
+// 	//right now this will not work because this is async, so handle with front end code
+// 	res.send(response)
+// })
 
 module.exports = router;
