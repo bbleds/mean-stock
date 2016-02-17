@@ -1,5 +1,5 @@
 "use strict";
-app.controller("quotesCtrl", ["$http", "buyStocksFactory",  function($http, $buyStocksFactory)
+app.controller("quotesCtrl", ["$http",  function($http)
 {
 	const self = this;
 
@@ -11,12 +11,19 @@ app.controller("quotesCtrl", ["$http", "buyStocksFactory",  function($http, $buy
 		.then((data)=>
 		{
 			self.stockInfo = data;
-			console.log(self.stockInfo);
 		})
 	}
 
 	//saves/buys stock to mongodb and returns message if successful
-	self.getStock = $buyStocksFactory.getStock;
-	self.getStockSuccess = $buyStocksFactory.status;
+	self.getStock = (company, quantity, purchasePrice, symbol) =>
+	{
+		//get quote from api
+		$http.post(`/api/getStock/${company}/${quantity}/${purchasePrice}/${symbol}`)
+		.then((data)=>
+		{
+			//display success message to user
+			self.getStockSuccess	= data;
+		})
+	}
 
 }])
