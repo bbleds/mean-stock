@@ -3,6 +3,17 @@ app.controller("portfolioCtrl", ["$http", function($http)
 {
 	const self = this;
 
+	//total each (stock * qty) for each stock and add result to totalPortfolioValue
+	const updatePortfolioValue = () =>
+	{
+		//set total stock value to 0
+		self.totalPortfolioValue = 0;
+
+		self.stocksArray.map((item, index)=>{
+				self.totalPortfolioValue += (item.purchaseStockPrice * item.quantity);
+			})
+	}
+
 	//get data from mongo for each stock and output the various components, executes immediately
 	self.loadStocks = (() =>
 	{
@@ -10,15 +21,11 @@ app.controller("portfolioCtrl", ["$http", function($http)
 		$http.get("/api/portfolio")
 		.then((data)=>
 		{
+			//array holding all stocks owned by user
 			self.stocksArray = data.data;
 
-			//initialize stock value
-			self.totalPortfolioValue=0;
-
-			//total each (stock * qty) and add result to totalPortfolioValue
-			data.data.map((item, index)=>{
-				self.totalPortfolioValue += (item.purchaseStockPrice * item.quantity);
-			})
+			//update totalPortfolioValue
+			updatePortfolioValue();
 
 		})
 	})();
@@ -32,11 +39,22 @@ app.controller("portfolioCtrl", ["$http", function($http)
 	//Update data in mongo when user sells stock
 	self.sellStocks = (qty, stockId) =>
 	{
+		//update db
 		$http.put(`/api/portfolio/${qty}/${stockId}`)
-		.then((data)=>
+		.then((response)=>
 		{
-			console.log(data);
+
+		  //live update page when db successfully updated
+			//go to item in array that was sold, and update quantity in array
+			self.stocksArray.map((item,index) =>
+			{
+				//if item id matches stockId passed in, update the quantity key
+				item["_id"] === stockId ? (item.quantity-= qty, updatePortfolioValue()) : console.log(" no match");
+			})
+
 		})
+
+
 	}
 
 }])
