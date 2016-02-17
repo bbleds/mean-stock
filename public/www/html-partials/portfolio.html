@@ -1,7 +1,7 @@
 <h1>Each portfolio Item will be below</h1>
 <div id="ctrlContainer" ng-controller="portfolioCtrl as portfolio">
 	<div class="container-fluid">
-		<div class="row">
+		<div id="portfolioHeader" class="row">
 			<h3 class="col-md-3">
 				Company
 			</h3>
@@ -17,7 +17,7 @@
 		</div>
 
 		<!-- output stocks -->
-		<div class="row" ng-repeat="stock in portfolio.stocksArray">
+		<div id="portfolioStockRow" class="row" ng-repeat="stock in portfolio.stocksArray">
 			<div class="col-md-3">
 				<p>{{stock.company}}</p>
 			</div>
@@ -29,7 +29,7 @@
 			</div>
 				<div class="col-md-3">
 				<p>{{stock.quantity}}</p>
-				<button class="btn">Sell</button>
+				<button class="btn sellBtn">Sell</button>
 			</div>
 		</div>
 
