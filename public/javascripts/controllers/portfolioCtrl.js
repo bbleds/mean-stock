@@ -51,7 +51,7 @@ app.controller("portfolioCtrl", ["$http", "buyStocksFactory", function($http, $b
 			{
 				//if item id matches stockId passed in, update the quantity key
 				item["_id"] === stockId && operation === 'sell' ? (item.quantity-= qty, updatePortfolioValue()) : console.log(" no match");
-				item["_id"] === stockId && operation === 'buy' ? (item.quantity+= qty, updatePortfolioValue()) : console.log(" no match");
+				item["_id"] === stockId && operation === 'buy' ? (item.quantity = parseInt(item.quantity) + parseInt(qty), updatePortfolioValue()) : console.log(" no match");
 			})
 
 		})
