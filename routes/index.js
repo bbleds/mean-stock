@@ -6,13 +6,13 @@ const router = express.Router();
 const defaultRoute = require("./default")
 const quotes = require("./quotes")
 const getStock = require("./getStock")
-const getPortfolio = require("./getPortfolio")
+const portfolio = require("./portfolio")
 
 
 //Use routes in order of need
 router.use(defaultRoute)
 router.use(quotes)
 router.use(getStock)
-router.use(getPortfolio)
+router.use(portfolio)
 
 module.exports = router;
