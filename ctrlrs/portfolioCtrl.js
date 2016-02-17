@@ -31,10 +31,11 @@ exportsObject.updateStock = (req, res) =>
 		const options = {"multi": false}
 
 	//update db for sold stocks
-	stockItem.update(conditions, update, options, () => {
+	stockItem.update(conditions, update, options, (err, numStocksChanged) => {
+		if(err) throw err
 
 		//send success message to client if data was updated
-		res.send({"status":"success"})
+		res.send({"status":"success", "stocksChanged": numStocksChanged})
 
 	})
 
