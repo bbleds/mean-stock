@@ -1,5 +1,5 @@
 "use strict";
-app.controller("portfolioCtrl", ["$http", function($http)
+app.controller("portfolioCtrl", ["$http", "buyStocksFactory", function($http, $buyStocksFactory)
 {
 	const self = this;
 
@@ -33,6 +33,7 @@ app.controller("portfolioCtrl", ["$http", function($http)
 	//Set stock that was clicked on to be the current stock selected
 	self.setClickedStock = (stock) =>
 	{
+		console.log(stock);
 		self.stockSelected = stock;
 	}
 
@@ -53,8 +54,8 @@ app.controller("portfolioCtrl", ["$http", function($http)
 			})
 
 		})
-
-
 	}
+
+	self.buyStocks = $buyStocksFactory.getStock;
 
 }])

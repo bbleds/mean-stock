@@ -1,43 +1,44 @@
 <div id="ctrlContainer" ng-controller="portfolioCtrl as portfolio">
 	<div class="container-fluid">
 		<div id="portfolioHeader" class="row centeredText">
-			<h3 class="col-md-3">
+			<h3 class="col-md-2 col-md-offset-1">
 				Company
 			</h3>
-			<h3 class="col-md-3">
+			<h3 class="col-md-2">
 				Symbol
 			</h3>
-			<h3 class="col-md-3">
+			<h3 class="col-md-2">
 				Price
 			</h3>
-			<h3 class="col-md-3">
+			<h3 class="col-md-2">
 				Quantity
 			</h3>
 		</div>
 
-		<!-- output stocks -->
-		<div class="row centeredText" ng-repeat="stock in portfolio.stocksArray">
-			<div id="portfolioStockRow">
-				<div class="col-md-3">
+		<!-- output stocks and order alphabetically -->
+		<div class="row centeredText underlinedRow" ng-repeat="stock in portfolio.stocksArray | orderBy:'company'">
+				<div class="col-md-2 col-md-offset-1 singleStockRow">
 					<p>{{stock.company}}</p>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2 singleStockRow">
 					<p>{{stock.symbol}}</p>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2 singleStockRow">
 					<p>{{stock.purchaseStockPrice}}</p>
 				</div>
-					<div class="col-md-3">
+				<div class="col-md-2 singleStockRow">
 					<p>{{stock.quantity}}</p>
+				</div>
+				<div class="col-md-2 singleStockOptions">
+					<button class="btn btn-info" data-toggle="modal" data-target="#buyModal" ng-click="portfolio.setClickedStock(stock)">Buy</button>
 					<button class="btn sellBtn" data-toggle="modal" data-target="#sellModal" ng-click="portfolio.setClickedStock(stock)">Sell</button>
 				</div>
-			</div>
 		</div>
 
 		<!-- Total portfolio value output -->
 		<div class="row">
 			<div class="col-md-12 centeredText">
-				<h2>Current Portfolio Value:  ${{portfolio.totalPortfolioValue.toFixed(2)}} </h2>
+				<h2>Current Portfolio Value:  ${{portfolio.totalPortfolioValue.toFixed(2) | number}} </h2>
 			</div>
 		</div>
 
@@ -53,10 +54,32 @@
 		      </div>
 		      <div class="modal-body">
 		        <p>How many stocks do you want to sell?</p>
-		        <input type="text" class="form-control" placeholder="Quantity" ng-model="portfolio.qty"/>
+		        <input type="text" class="form-control" placeholder="Quantity" ng-model="portfolio.sellQty"/>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="portfolio.sellStocks(portfolio.qty, portfolio.stockSelected._id)">Sell</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="portfolio.sellStocks(portfolio.sellQty, portfolio.stockSelected._id)">Sell</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
+			<!-- Buy Modal -->
+		<div id="buyModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Buy Stock</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>How many stocks do you want?</p>
+		        <input type="text" class="form-control" placeholder="Quantity" ng-model="portfolio.buyQty"/>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="portfolio.buyStocks(portfolio.stockSelected.company, portfolio.buyQty, portfolio.stockSelected.purchaseStockPrice, portfolio.stockSelected.symbol)">Buy</button>
 		      </div>
 		    </div>
 
