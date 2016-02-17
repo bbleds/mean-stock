@@ -57,7 +57,7 @@
 		        <input type="text" class="form-control" placeholder="Quantity" ng-model="portfolio.sellQty"/>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="portfolio.sellStocks(portfolio.sellQty, portfolio.stockSelected._id)">Sell</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="portfolio.modifyStocks(portfolio.sellQty, portfolio.stockSelected._id, 'sell')">Sell</button>
 		      </div>
 		    </div>
 
@@ -79,7 +79,7 @@
 		        <input type="text" class="form-control" placeholder="Quantity" ng-model="portfolio.buyQty"/>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="portfolio.buyStocks(portfolio.stockSelected.company, portfolio.buyQty, portfolio.stockSelected.purchaseStockPrice, portfolio.stockSelected.symbol)">Buy</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="portfolio.modifyStocks(portfolio.buyQty, portfolio.stockSelected._id, 'buy')">Buy</button>
 		      </div>
 		    </div>
 

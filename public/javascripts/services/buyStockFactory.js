@@ -4,7 +4,7 @@ app.factory("buyStocksFactory", ["$http", ($http) =>
 	const factoryExports = {};
 
 
-// NEXT STEP -> when you send request here, if stock already exists when you buy, then have put request, else have post request
+	//submit stock to db for storing
 	factoryExports.getStock = (company, quantity, purchasePrice, symbol) =>
 	{
 		//get quote from api

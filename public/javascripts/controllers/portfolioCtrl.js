@@ -38,10 +38,10 @@ app.controller("portfolioCtrl", ["$http", "buyStocksFactory", function($http, $b
 	}
 
 	//Update data in mongo when user sells stock
-	self.sellStocks = (qty, stockId) =>
+	self.modifyStocks = (qty, stockId, operation) =>
 	{
 		//update db
-		$http.put(`/api/portfolio/${qty}/${stockId}`)
+		$http.put(`/api/portfolio/${qty}/${stockId}/${operation}`)
 		.then((response)=>
 		{
 
@@ -50,12 +50,11 @@ app.controller("portfolioCtrl", ["$http", "buyStocksFactory", function($http, $b
 			self.stocksArray.map((item,index) =>
 			{
 				//if item id matches stockId passed in, update the quantity key
-				item["_id"] === stockId ? (item.quantity-= qty, updatePortfolioValue()) : console.log(" no match");
+				item["_id"] === stockId && operation === 'sell' ? (item.quantity-= qty, updatePortfolioValue()) : console.log(" no match");
+				item["_id"] === stockId && operation === 'buy' ? (item.quantity+= qty, updatePortfolioValue()) : console.log(" no match");
 			})
 
 		})
 	}
-
-	self.buyStocks = $buyStocksFactory.getStock;
 
 }])

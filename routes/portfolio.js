@@ -7,7 +7,7 @@ const portfolioCtrl = require("../ctrlrs/portfolioCtrl")
 //queries db and sends back data as json to /api/portfolio route
 router.get("/api/portfolio", portfolioCtrl.getAllStock);
 //updates db with new quantity after stocks are sold
-router.put("/api/portfolio/:qty/:stockId", portfolioCtrl.updateStock);
+router.put("/api/portfolio/:qty/:stockId/:operation", portfolioCtrl.updateStock);
 
 
 module.exports = router;

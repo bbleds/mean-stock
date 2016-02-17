@@ -21,12 +21,14 @@ exportsObject.getAllStock = (req, res) =>
 exportsObject.updateStock = (req, res) =>
 {
 	console.log(req.params);
+	//if selling stock subtract qty, if buy increase qty
 
 	//variables to query db
 		//the conditions to be matched to select stock to update
 		const conditions = {"_id": req.params.stockId};
-		//the operation to be executed on the matched stock, in this case it is a subtraction operation (increment by negative quantity passed in)
-		const update = {$inc: {"quantity" : -req.params.qty}};
+		//the operation to be executed on the matched stock, in this case it is a subtraction operation (increment by negative quantity passed in) or addition operation
+		let update;
+		req.params.operation === "buy" ? update = {$inc: {"quantity" : +req.params.qty}} : update = {$inc: {"quantity" : -req.params.qty}}
 		//only target one item in db
 		const options = {"multi": false}
 
