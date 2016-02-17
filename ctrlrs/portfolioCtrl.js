@@ -18,7 +18,7 @@ exportsObject.getAllStock = (req, res) =>
 		const currentTime = Math.floor((new Date().getTime()/1000)/60);
 
 		//if price data is older than 15 mins, update price data for each item in db and then finish with function below
-		if((timeOnStocks+1) < currentTime){
+		if((timeOnStocks+15) < currentTime){
 			console.log("it has been 15 mins you should query for new data");
 
 			//loop through each stock and update price for each
