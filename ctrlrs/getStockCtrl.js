@@ -8,8 +8,6 @@ const exportsObject = {};
 
 exportsObject.getStock = (req, res) =>
 {
-	console.log("req.body below");
-
 	const company = req.params.company;
 	const quantity = req.params.quantity;
 	const purchaseStockPrice = req.params.purchaseStockPrice;
@@ -27,7 +25,7 @@ exportsObject.getStock = (req, res) =>
 	// save stock to db and send res
 	stockToBuy.save(function (err, objectGiven) {
    			 if (err) return console.error(err);
-   			 res.send({"status":"Stock saved Successfully"})
+   			 res.send({"status":"Purchased Stock Successfully"})
  		 });
 
 }

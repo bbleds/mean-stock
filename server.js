@@ -34,7 +34,6 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use(routes);
 
 //mongodb integration
-let dbase = mongoose.connection;
 mongoose.connect(MONGODB_URL);
 
 //when mongo is connected

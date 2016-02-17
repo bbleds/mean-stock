@@ -12,13 +12,46 @@ exportsObject.getAllStock = (req, res) =>
 	stockItem.find({}, (err,stock)=>
 	{
 		if (err) throw err
+		// time on stocks converted to minutes
+		const timeOnStocks = Math.floor((stock[0].timestamp/1000)/60);
+		// current time converted to minutes
+		const currentTime = Math.floor((new Date().getTime()/1000)/60);
+
+		//if price data is older than 15 mins, update price data for each item in db and then finish with function below
+		if((timeOnStocks+1) < currentTime){
+			console.log("it has been 15 mins you should query for new data");
+
+			//loop through each stock and update price for each
+			console.log(stock);
+			stock.map((item, index) =>
+			{
+				let url = `http:/\/dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=${item.symbol}`
+				console.log(item.symbol);
+
+				request.get(url, (err, response, body )=>
+				{
+					//parse data from api and store current price from api in variable
+					const data = JSON.parse(body);
+					let updatedPrice = data.LastPrice
+
+					//update db with updated price
+					//////THIS IS WHRE IM AT
+
+ 				})
+			})
+
+		//if price is not older, just do what is below
+		} else {
+			console.log("it has not been 15 mins, simply output data");
+		}
+
 		//respond with all stocks if no error
 		res.json(stock)
 	})
 
 }
 
-exportsObject.updateStock = (req, res) =>
+exportsObject.updateQuantity = (req, res) =>
 {
 	console.log(req.params);
 	//if selling stock subtract qty, if buy increase qty
@@ -40,7 +73,11 @@ exportsObject.updateStock = (req, res) =>
 		res.send({"status":"success", "stocksChanged": numStocksChanged})
 
 	})
+}
 
+exportsObject.updateStockPrice = (req, res) =>
+{
+	console.log("bruhhhhhhhh");
 
 }
 

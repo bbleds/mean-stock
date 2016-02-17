@@ -22,7 +22,6 @@ app.controller("quotesCtrl", ["$http", "$state",  function($http, $state)
 		$http.post(`/api/getStock/${company}/${quantity}/${purchasePrice}/${symbol}`)
 		.then((data)=>
 		{
-
 			//display success message to user
 			self.getStockSuccess	= data;
 
