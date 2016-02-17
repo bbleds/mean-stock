@@ -1,7 +1,8 @@
 "use strict";
-app.controller("quotesCtrl", ["$http",  function($http)
+app.controller("quotesCtrl", ["$http", "$state",  function($http, $state)
 {
 	const self = this;
+	self.quoteFound = false;
 
 	//gets quote for a stock
 	self.getQuote = (sym) =>
@@ -10,7 +11,7 @@ app.controller("quotesCtrl", ["$http",  function($http)
 		$http.get(`/api/quotes/${sym}`)
 		.then((data)=>
 		{
-			self.stockInfo = data;
+			data.status === 200 ? (self.stockInfo = data, self.quoteFound = true) : console.log("not found");
 		})
 	}
 
@@ -21,8 +22,10 @@ app.controller("quotesCtrl", ["$http",  function($http)
 		$http.post(`/api/getStock/${company}/${quantity}/${purchasePrice}/${symbol}`)
 		.then((data)=>
 		{
+
 			//display success message to user
 			self.getStockSuccess	= data;
+
 		})
 	}
 

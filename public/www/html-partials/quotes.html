@@ -2,22 +2,22 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>Enter Symbol Below</h1>
+				<h2 class="centeredText">Enter Ticker Symbol Below</h2>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 col-md-offset-4">
 				<input type="text" class="form-control" placeholder="Enter Symbol here" ng-model="quotes.symbol">
 			</div>
-			<div class="col-md-12">
-				<button class="btn btn-primary" ng-click="quotes.getQuote(quotes.symbol)">Find</button>
+			<div class="col-md-12 centeredText">
+				<button id="findQuoteBtn" class="btn btn-primary btn-md generalBtn" ng-click="quotes.getQuote(quotes.symbol)">Find</button>
 			</div>
 		</div>
-		<div class="row">
+		<div id="successfulQuoteOutput" ng-show="quotes.quoteFound" class="row centeredText">
 			<div class="col-md-12">
-				<h1>Quote:</h1>
-				<p>{{quotes.stockInfo.data.Name}}</p>
-				<p>{{quotes.stockInfo.data.LastPrice}}</p>
+				<h2>Quote Found</h2>
+				<h3>Company: {{quotes.stockInfo.data.Name}}</h3>
+				<h3>Current Price: ${{quotes.stockInfo.data.LastPrice | number}}</h3>
 				<!-- trigger buy modal -->
-				<button class="btn btn-info" data-toggle="modal" data-target="#buyModal">Buy</button>
+				<button class="btn btn-info btn-md generalBtn" data-toggle="modal" data-target="#buyModal">Buy</button>
 			</div>
 			<div class="col-md-12">
 				<h1>{{quotes.getStockSuccess.data.status}}</h1>
@@ -35,7 +35,7 @@
 		        <h4 class="modal-title">Buy Stock</h4>
 		      </div>
 		      <div class="modal-body">
-		        <p>How many stocks do you want?</p>
+		        <p>How many stocks do you want to buy?</p>
 		        <input type="text" class="form-control" placeholder="Quantity" ng-model="quotes.qty"/>
 		      </div>
 		      <div class="modal-footer">

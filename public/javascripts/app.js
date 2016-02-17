@@ -20,7 +20,4 @@ app.config(($stateProvider, $urlRouterProvider, $locationProvider) => {
 		})
 	//if we load in erroneous route, go  back to base/catch-all route
 	$urlRouterProvider.otherwise('/');
-
-		// //remove hashes from urls -> clean presentation of url
-		// $locationProvider.html5Mode(true);
 });
