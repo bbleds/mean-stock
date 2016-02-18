@@ -39,7 +39,7 @@ exportsObject.getAllStock = (req, res) =>
 					console.log("data is");
 					console.log(data);
 
-					stockItem.findByIdAndUpdate(item._id, { "purchaseStockPrice": updatedPrice }, (err) =>
+					stockItem.findByIdAndUpdate(item._id, { "dailyStockPrice": updatedPrice }, (err) =>
 					{
 						if (err) throw err
 					})

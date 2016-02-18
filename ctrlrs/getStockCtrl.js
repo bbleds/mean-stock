@@ -18,8 +18,9 @@ exportsObject.getStock = (req, res) =>
 	{
 		"company": company,
 		"quantity": quantity,
-		"purchaseStockPrice": purchaseStockPrice,
-		"symbol": symbol
+		"originalStockPrice": purchaseStockPrice,
+		"symbol": symbol,
+		"dailyStockPrice" : purchaseStockPrice
 	})
 
 	// save stock to db and send res

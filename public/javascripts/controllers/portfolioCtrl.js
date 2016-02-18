@@ -10,7 +10,7 @@ app.controller("portfolioCtrl", ["$http", "buyStocksFactory", function($http, $b
 		self.totalPortfolioValue = 0;
 
 		self.stocksArray.map((item, index)=>{
-				self.totalPortfolioValue += (item.purchaseStockPrice * item.quantity);
+				self.totalPortfolioValue += (item.dailyStockPrice * item.quantity);
 			})
 	}
 

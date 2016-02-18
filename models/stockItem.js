@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const stockItemSchema = mongoose.model("stockItem", mongoose.Schema({
 	company: String,
 	quantity: Number,
-	purchaseStockPrice: Number,
+	dailyStockPrice: Number,
 	symbol: String,
+	originalStockPrice: Number,
 	timestamp: { type: Number, default: Date.now }
 }))
 
