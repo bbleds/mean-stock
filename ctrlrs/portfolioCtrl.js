@@ -26,7 +26,6 @@ exportsObject.getAllStock = (req, res) =>
 			stock.map((item, index) =>
 			{
 				let url = `http:/\/dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=${item.symbol}`
-				console.log(item.symbol);
 
 				request.get(url, (err, response, body )=>
 				{
@@ -34,10 +33,17 @@ exportsObject.getAllStock = (req, res) =>
 					const data = JSON.parse(body);
 					let updatedPrice = data.LastPrice
 
-					//update db with updated price
-					//////THIS IS WHRE IM AT
+					console.log("last LastPrice is "+ updatedPrice);
 
- 				})
+					//update db with updated price
+					console.log("data is");
+					console.log(data);
+
+					stockItem.findByIdAndUpdate(item._id, { "purchaseStockPrice": updatedPrice }, (err) =>
+					{
+						if (err) throw err
+					})
+				})
 			})
 
 		//if price is not older, just do what is below
